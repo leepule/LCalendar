@@ -84,7 +84,10 @@
             'trigger': '#demo1', //标签id
             'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
             'minDate': '2018-5-18', //最小日期
-            'maxDate': '2020-2-25' //最大日期
+            'maxDate': '2020-2-25', //最大日期
+            callBack: function(value) {
+                console.log(value)
+            }
         });
         var calendardatetime = new LCalendar();
         calendardatetime.init({

@@ -107,6 +107,8 @@ class MobileCalendar {
   }
   init(params) {
     this.type = params.type;
+    // 回调
+    this.callBack= params.callBack;
     this.trigger = document.querySelector(params.trigger);
     if (this.trigger.getAttribute("data-lcalendar") != null) {
       let arr = this.trigger.getAttribute("data-lcalendar").split(",");
@@ -652,6 +654,7 @@ class MobileCalendar {
             }`
           : ""
       }`;
+      typeof this.callBack == "function" && this.callBack(this.trigger.value)
       closeCalendar(e);
     };
   }
@@ -674,9 +677,9 @@ class MobileCalendar {
     let gearTouchEnd = this.handleTouchEnd();
     let gearTouchMove = this.handleTouchMove(gearTouchEnd);
     let lcalendar_cancel = this.gearDate.querySelector(".lcalendar_cancel");
-    lcalendar_cancel.addEventListener("touchstart", closeCalendar);
+    lcalendar_cancel.addEventListener("click", closeCalendar);
     let lcalendar_finish = this.gearDate.querySelector(".lcalendar_finish");
-    lcalendar_finish.addEventListener("touchstart", confirmValue);
+    lcalendar_finish.addEventListener("click", confirmValue);
     let date_yy = this.gearDate.querySelector(".date_yy");
     let date_mm = this.gearDate.querySelector(".date_mm");
     let date_dd = this.gearDate.querySelector(".date_dd");
